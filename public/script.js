@@ -1,5 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    const API_BASE_URL = 'https://student-tasks-api-nmvy.onrender.com'; // **Aquí está el cambio clave**
+
     // Referencias a los formularios y botones
     const registerForm = document.getElementById('register');
     const loginForm = document.getElementById('login');
@@ -26,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const email = document.getElementById('register-email').value;
             const password = document.getElementById('register-password').value;
             try {
-                const response = await fetch('http://localhost:3000/users/register', {
+                const response = await fetch(`${API_BASE_URL}/users/register`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ name, email, password })
@@ -51,7 +53,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const email = document.getElementById('login-email').value;
             const password = document.getElementById('login-password').value;
             try {
-                const response = await fetch('http://localhost:3000/users/login', {
+                const response = await fetch(`${API_BASE_URL}/users/login`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password })
@@ -66,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     alert('Error en el login: ' + data.message);
                 }
             } catch (error) {
-                console.error('Error al conectar con el servidor:', error);
+                console.error('Error en el login:', error);
                 alert('Error al conectar con el servidor.');
             }
         });
@@ -86,7 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             try {
-                const response = await fetch('http://localhost:3000/tasks', {
+                const response = await fetch(`${API_BASE_URL}/tasks`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ userId, title, description })
@@ -124,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
         try {
-            const response = await fetch(`http://localhost:3000/tasks/${userId}`);
+            const response = await fetch(`${API_BASE_URL}/tasks/${userId}`);
             const tasks = await response.json();
             const tasksList = document.getElementById('tasks-list');
             tasksList.innerHTML = '';
@@ -149,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 button.addEventListener('click', async (e) => {
                     const taskId = e.target.getAttribute('data-id');
                     try {
-                        const response = await fetch(`http://localhost:3000/tasks/${taskId}/complete`, {
+                        const response = await fetch(`${API_BASE_URL}/tasks/${taskId}/complete`, {
                             method: 'PUT',
                             headers: {
                                 'Content-Type': 'application/json'
