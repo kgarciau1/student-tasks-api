@@ -8,6 +8,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const addTaskForm = document.getElementById('add-task-form');
     const logoutButton = document.getElementById('logout-button');
 
+    // Función para limpiar todos los campos
+    function clearForms() {
+        document.getElementById('register-name').value = '';
+        document.getElementById('register-email').value = '';
+        document.getElementById('register-password').value = '';
+        document.getElementById('login-email').value = '';
+        document.getElementById('login-password').value = '';
+        document.getElementById('task-title').value = '';
+        document.getElementById('task-description').value = '';
+    }
+
     // Funciones para mostrar u ocultar secciones
     function showTasksPage() {
         document.getElementById('auth-section').style.display = 'none';
@@ -18,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function showAuthPage() {
         document.getElementById('auth-section').style.display = 'block';
         document.getElementById('tasks-section').style.display = 'none';
+        clearForms(); // **Aquí se llama a la función para limpiar los campos**
     }
 
     // Lógica para el registro (solo si el formulario existe)
@@ -36,10 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await response.json();
                 if (response.ok) {
                     alert('Usuario registrado exitosamente.');
-                    // Opcional: limpiar campos después de un registro exitoso
-                    document.getElementById('register-name').value = '';
-                    document.getElementById('register-email').value = '';
-                    document.getElementById('register-password').value = '';
                 } else {
                     alert('Error en el registro: ' + data.message);
                 }
@@ -118,16 +126,6 @@ document.addEventListener('DOMContentLoaded', () => {
         logoutButton.addEventListener('click', () => {
             localStorage.removeItem('userId');
             localStorage.removeItem('userName');
-
-            // Limpia los campos del formulario de login y registro
-            document.getElementById('login-email').value = '';
-            document.getElementById('login-password').value = '';
-            document.getElementById('register-name').value = '';
-            document.getElementById('register-email').value = '';
-            document.getElementById('register-password').value = '';
-            document.getElementById('task-title').value = '';
-            document.getElementById('task-description').value = '';
-
             showAuthPage();
             alert('Sesión cerrada exitosamente.');
         });
