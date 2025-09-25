@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    const API_BASE_URL = 'https://student-tasks-api-nmvy.onrender.com'; // **Aquí está el cambio clave**
+    const API_BASE_URL = 'https://student-tasks-api-nmvy.onrender.com';
 
     // Referencias a los formularios y botones
     const registerForm = document.getElementById('register');
@@ -36,6 +36,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await response.json();
                 if (response.ok) {
                     alert('Usuario registrado exitosamente.');
+                    // Opcional: limpiar campos después de un registro exitoso
+                    document.getElementById('register-name').value = '';
+                    document.getElementById('register-email').value = '';
+                    document.getElementById('register-password').value = '';
                 } else {
                     alert('Error en el registro: ' + data.message);
                 }
@@ -114,6 +118,16 @@ document.addEventListener('DOMContentLoaded', () => {
         logoutButton.addEventListener('click', () => {
             localStorage.removeItem('userId');
             localStorage.removeItem('userName');
+
+            // Limpia los campos del formulario de login y registro
+            document.getElementById('login-email').value = '';
+            document.getElementById('login-password').value = '';
+            document.getElementById('register-name').value = '';
+            document.getElementById('register-email').value = '';
+            document.getElementById('register-password').value = '';
+            document.getElementById('task-title').value = '';
+            document.getElementById('task-description').value = '';
+
             showAuthPage();
             alert('Sesión cerrada exitosamente.');
         });
