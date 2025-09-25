@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Tareas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Gestor de Tareas</h1>
+    </header>
+
+    <main>
+        <section id="auth-section">
+            <h2>Login / Registro</h2>
+            <div id="login-form">
+                <h3>Login</h3>
+                <form id="login">
+                    <input type="email" id="login-email" placeholder="Email" required>
+                    <input type="password" id="login-password" placeholder="Contraseña" required>
+                    <button type="submit">Iniciar Sesión</button>
+                </form>
+            </div>
+            <div id="register-form">
+                <h3>Registro</h3>
+                <form id="register">
+                    <input type="text" id="register-name" placeholder="Nombre" required>
+                    <input type="email" id="register-email" placeholder="Email" required>
+                    <input type="password" id="register-password" placeholder="Contraseña" required>
+                    <button type="submit">Registrarse</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="tasks-section" style="display:none;">
+    <h2>Mis Tareas</h2>
+    <button id="logout-button">Cerrar Sesión</button>
+
+    <form id="add-task-form">
+        <input type="text" id="task-title" placeholder="Título de la tarea" required>
+        <input type="text" id="task-description" placeholder="Descripción de la tarea">
+        <button type="submit">Añadir Tarea</button>
+    </form>
+
+    <div id="tasks-list">
+        </div>
+</section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
